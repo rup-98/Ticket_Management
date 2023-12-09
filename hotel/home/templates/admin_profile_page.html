@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{%  block start %}
+<h1>Admin Profile</h1>
+<a href="/logout/" class="btn btn-primary mt-5 ">Logout</a>
+<div class="container mt-5 pt-5 col-6">
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="event_title">Event Title:</label>
+        <input type="text" name="event_title" id="event_title"><br><br>
+
+        <label for="ticket_price">Ticket Price:</label>
+        <input type="number" name="ticket_price" id="ticket_price"><br><br>
+
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description"><br><br>
+
+        <label class="" for="exampleFormControlSelect1">Event Type</label>
+        <select name="event_type" class="form-control">
+        <option value="">Choose</option>
+        {% for amenities_obj in amenities_objs %}
+        <option {% if amenities_obj.amenity_name in amenities  %} selected {%endif%}value="{{amenities_obj.amenity_name}}">{{amenities_obj.amenity_name}}</option>
+        {% endfor %}
+        </select><br><br>
+
+        <label for="total_seats">Total Seats:</label>
+        <input type="number" name="total_seats" id="total_seats"><br><br>
+
+        <input type="submit" value="Create Event">
+
+    </form>
+    
+    
+</div>
+
+
+{% endblock %}
